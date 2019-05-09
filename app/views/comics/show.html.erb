@@ -1,0 +1,31 @@
+<h1>漫画詳細</h1>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+<img src="<%= "/comic_image/#{@comic.image_name}"%> ">
+<p><%= @comic.title %><br>
+<%= "#{@comic.price}円" %><br>
+<%= Publisher.find(@comic.publisher_id).name %><br>
+<%= @comic.content %>
+<br>
+<br>
+
+<%
+=begin%>
+ <%= form_for(@comic, action: 'review_create') do |r| %>
+<%= r.text_area :review %>
+<input type="submit" value="投稿">
+<% end %> 
+<%
+=end
+%>
+
+<% @review.each do |r| %>
+<%= "#{r.content}" %>
+<% end %>
+
+</p>
+<br>
+<%= link_to "編集", edit_comic_path(@comic) %>
+<%= link_to "削除", comic_path(@comic), {method: "delete"} %>
+<%= link_to "TOPへ", root_path %>

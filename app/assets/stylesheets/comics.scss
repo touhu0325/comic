@@ -1,0 +1,19 @@
+// Place all the styles related to the comics controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+.tmb{
+    width: 200px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.comic_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

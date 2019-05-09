@@ -1,0 +1,85 @@
+class ComicsController < ApplicationController
+    def index
+        @comic = Comic.all.order(created_at: :desc)
+    end
+
+    def jump
+      @Pub = Publisher.find(1).comic
+      @comic = Comic.find_by(id: params[:id])
+    end
+
+    def show
+        @comic = Comic.find_by(id: params[:id])
+        @review = Review.where(comic_id: params[:id])
+    end
+
+    def review_new
+      @review = Review.new
+    end
+    def review_create
+      @review = Review.new(review_params)
+      if @comic.save
+        redirect_to("comics/#{@comic.id}")
+        else
+        render :show
+        end
+    end
+
+    def new
+        @comic = Comic.new
+    end
+
+    def create
+      if params[:image]
+        @comic.image_name = "#{@comic.id}.jpg"
+        image = params[:image]
+        File.binwrite("public/comic_image/#{@comic.image_name}", image.read)
+      end
+        @comic = Comic.new(comic_params)
+        if @comic.save
+        redirect_to("/")
+        else
+        render :new
+        end
+    end
+
+    def edit
+      if params[:image]
+        @comic.image_name = "#{@comic.id}.jpg"
+        image = params[:image]
+        File.binwrite("public/comic_image/#{@comic.image_name}", image.read)
+        @comic.save
+     end
+        @comic = Comic.find_by(id: params[:id])
+    end
+    def update
+        @comic = Comic.find_by(id: params[:id])
+        if params[:image]
+          @comic.image_name = "#{@comic.id}.jpg"
+          image = params[:image]
+          File.binwrite("public/comic_image/#{@comic.image_name}", image.read)
+          @comic.save
+      end
+        @comic.update(comic_params)
+        if @comic.save
+            flash[:notice] = "保存完了"
+            redirect_to comic_path(@comic)
+        else 
+            flash[:notice] = "保存失敗"
+            render :edit
+        end
+    end
+    def destroy
+        @comic = Comic.find_by(id: params[:id])
+        @comic.destroy
+        flash[notice] = "削除"
+        redirect_to("/")
+    end
+
+
+    private
+    def comic_params
+      params.require(:comic).permit(:title, :price, :publisher_id, :content)
+    end
+
+end

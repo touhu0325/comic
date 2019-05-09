@@ -1,0 +1,12 @@
+<%= render :partial => "header" %>
+<ul class="comic_list">
+<% @comic.each do |c|%>
+<%= link_to comic_path(c) do %>
+<img src="<%= "/comic_image/#{c.image_name}" %> " class="tmb">
+<p><%= c.title %><br>
+<%= Publisher.find(c.publisher_id).name %></p>
+
+<% end %>
+<% end %>
+</ul>
+<%= render :partial => "footer" %>
