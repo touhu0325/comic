@@ -1,6 +1,6 @@
 <%= render :partial => "header" %>
 <ul class="comic_list">
-<% @Pub.each do |p|%>
+<% @jump.each do |p|%>
 <%= link_to comic_path(p) do %>
 <img src="<%= "/comic_image/#{p.image_name}" %> " class="tmb">
 <p><%= p.title %></p>

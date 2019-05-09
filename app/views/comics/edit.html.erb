@@ -10,7 +10,7 @@
 <% end %>
 <%= form_for(@comic, {multipart: true}) do |f| %>
 <p>タイトル</p>
-<%= f.text_area :title %>
+<%= f.text_area :title %><br>
 <%= f.label :"出版社" %><br>
 <%= f.collection_select :publisher_id, Publisher.all, :id, :name %>
 <p>この作品について</p>
@@ -21,3 +21,5 @@
 <%= f.file_field :image %>
 <input type="submit" value="投稿">
 <% end %>
+
+<%= link_to "Topへ戻る", root_path %>

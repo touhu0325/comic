@@ -1,13 +1,14 @@
 class ComicsController < ApplicationController
     def index
         @comic = Comic.all.order(created_at: :desc)
+        @publisher = Publisher.all
     end
 
     def jump
-      @Pub = Publisher.find(1).comic
+      @jump = Publisher.find(1).comic
       @comic = Comic.find_by(id: params[:id])
     end
-
+    
     def show
         @comic = Comic.find_by(id: params[:id])
         @review = Review.where(comic_id: params[:id])

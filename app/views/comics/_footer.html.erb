@@ -1,3 +1,6 @@
 <%= link_to '新規comic作成', new_comic_path %>
 <%= link_to 'ジャンプ作品へ', jump_comics_path %>
+<% @publisher.each do |p| %>
+<%= link_to "#{p.name}出版の作品一覧", jump_comics_path %>
+<% end %>
 <%= link_to "TOPへ" , root_path %>
