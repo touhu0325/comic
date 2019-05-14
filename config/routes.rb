@@ -4,7 +4,7 @@ root 'comics#index'
 
 resources :comics do 
   get :jump, on: :collection
-  resources :review
+  resources :reviews, only: [:create]
 end
 end
 

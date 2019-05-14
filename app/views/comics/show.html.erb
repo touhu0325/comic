@@ -10,18 +10,19 @@
 <br>
 <br>
 
-<%
-=begin%>
- <%= form_for(@comic, action: 'review_create') do |r| %>
-<%= r.text_area :review %>
-<input type="submit" value="投稿">
-<% end %> 
-<%
-=end
-%>
 
-<% @review.each do |r| %>
-<%= "#{r.content}" %>
+
+ <%= form_for(@review, url: comic_reviews_path(@comic.id), :method => "post") do |r| %>
+ <%= r.text_area :name %>
+<%= r.text_area :content %>
+<input type="submit" value="投稿">
+<% end %>  
+
+
+
+<% @reviews.each do |review| %>
+----------------------------<br>
+<%= review.content %><br>
 <% end %>
 
 </p>

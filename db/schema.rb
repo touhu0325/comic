@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_05_08_082723) do
   end
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
+    t.string "name" #user_id
     t.string "content"
     t.integer "comic_id"
     t.datetime "created_at", null: false

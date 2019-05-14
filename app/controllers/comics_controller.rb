@@ -11,19 +11,8 @@ class ComicsController < ApplicationController
     
     def show
         @comic = Comic.find_by(id: params[:id])
-        @review = Review.where(comic_id: params[:id])
-    end
-
-    def review_new
-      @review = Review.new
-    end
-    def review_create
-      @review = Review.new(review_params)
-      if @comic.save
-        redirect_to("comics/#{@comic.id}")
-        else
-        render :show
-        end
+        @reviews = @comic.reviews
+        @review = Review.new
     end
 
     def new
