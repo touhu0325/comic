@@ -6,5 +6,6 @@ resources :comics do
   get :jump, on: :collection
   resources :reviews, only: [:create]
 end
+resources :users
 end
 
