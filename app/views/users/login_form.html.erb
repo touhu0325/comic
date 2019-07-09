@@ -1,0 +1,13 @@
+<div>ログイン</div>
+        <% if @error_message %>
+            <%= @error_message %>
+        <% end %>
+        <%= form_for("/login") do |f| %>
+          <p>メールアドレス</p><br>
+          <%= f.label :email %><br>
+          <%= f.text_field :email %><br>
+          <p>パスワード</p>
+          <%= f.label :password %><br>
+          <%= f.password_field :password %>
+          <%= f.submit "ログイン" %>
+        <% end %>

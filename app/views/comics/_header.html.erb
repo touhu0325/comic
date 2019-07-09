@@ -1,4 +1,23 @@
+<%= debug(params) if Rails.env.development? %>
 <h1>漫画一覧</h1>
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
 <% end %>
+ <ul class="header-menus">
+        <% if session[:user_name] %>
+          <li>
+            現在ログインしているユーザーのname:
+            <%= session[:user_name] %>
+          </li>
+          <li>
+            <%= link_to("ログアウト", "/logout", {method: :post}) %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("新規登録", "/signup") %>
+          </li>
+          <li>
+            <%= link_to("ログイン", "/login") %>
+          </li>
+        <% end %>
+      </ul>

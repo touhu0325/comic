@@ -1,0 +1,15 @@
+    <div class="form-heading">アカウント編集</div>
+        <% @user.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+        <%= form_for("/users/#{@user.id}/update", {multipart: true}) do |f| %>
+          <%= f.label :name %><br>
+          <%= f.text_field :name %>
+          <%= f.label :email %><br>
+          <%= f.text_field :email %>
+          <%= f.label :password %><br>
+          <%= f.password_field :password %>
+          <%= f.label :password_confirmation %><br>
+          <%= f.password_field :password_confirmation %>
+          <%= f.submit "保存" %>
+        <% end %>

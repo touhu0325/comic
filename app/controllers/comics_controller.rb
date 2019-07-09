@@ -11,8 +11,8 @@ class ComicsController < ApplicationController
     
     def show
         @comic = Comic.find_by(id: params[:id])
-        @reviews = @comic.reviews
-        @review = Review.new
+        @comments = @comic.reviews
+        @comment = Comment.new
     end
 
     def new
@@ -66,6 +66,11 @@ class ComicsController < ApplicationController
         redirect_to("/")
     end
 
+    def comment
+      post_text = params[:data][:text]
+      results = { :message => post_text }
+      render partial: 'comment_partial', locals: { :results => results }
+    end
 
     private
     def comic_params
